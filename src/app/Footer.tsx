@@ -1,24 +1,5 @@
 "use client";
 
-/**
- * Footer — Vione
- * ------------------------------------------------------------
- * Brand + tagline, nav links (same routes as Navbar), venue/contact
- * info, and a bottom bar. Self-contained: plain scoped CSS, inline
- * SVG icons — nothing depends on Tailwind or an icon package.
- *
- * Animation: columns fade + rise into place, staggered, the moment
- * the footer enters the viewport (IntersectionObserver), rather than
- * animating on page load where the user wouldn't see it yet.
- *
- * Usage:
- *   import Footer from "@/components/Footer";
- *   ...
- *   <Footer />
- *
- * Replace the placeholder address / phone with your real details
- * before shipping.
- */
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -112,7 +93,7 @@ export default function Footer() {
       <div className="vione-footer-top">
         <div className="vione-footer-brand">
           <img src="/images/logo.png" alt="Vione" className="vione-footer-logo" />
-          <p className="vione-footer-tagline">Where celebrations become legacy.</p>
+          <p className="vione-footer-tagline">Legacy, Curated.</p>
         </div>
 
         <div className="vione-footer-col">
@@ -138,6 +119,7 @@ export default function Footer() {
             New Delhi, Delhi, 110092
           </p>
           <a
+          
             href={DIRECTIONS_URL}
             target="_blank"
             rel="noopener noreferrer"

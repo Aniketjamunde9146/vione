@@ -53,7 +53,7 @@ export default function HallTwoPage() {
         loop
         playsInline
         preload="none"
-        poster="/images/hallposter.png"
+        poster="/images/hall-two-poster.jpg"
         onCanPlayThrough={() => setVideoLoaded(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out ${
           canPlay && videoLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
@@ -76,7 +76,7 @@ export default function HallTwoPage() {
               mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            Curated Experiences
+            Curated Living
           </p>
 
           <h2
@@ -84,24 +84,12 @@ export default function HallTwoPage() {
               mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            Moments That
-            <br />
-            Stay Forever.
+            Moments Eternal
           </h2>
-
-          <p
-            className={`mx-auto mt-8 max-w-3xl text-lg leading-8 text-vione-cream/90 transition-all duration-1000 delay-300 ease-out motion-reduce:transition-none ${
-              mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            }`}
-          >
-            Every event is carefully curated to create unforgettable memories.
-            From breathtaking venues to exceptional hospitality, every detail
-            reflects elegance, exclusivity, and timeless sophistication.
-          </p>
           <br />
 
           <div
-            className={`mt-14 transition-all duration-1000 delay-500 ease-out motion-reduce:transition-none ${
+            className={`mt-14 transition-all duration-1000 delay-300 ease-out motion-reduce:transition-none ${
               mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >

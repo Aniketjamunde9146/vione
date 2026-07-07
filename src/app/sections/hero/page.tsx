@@ -37,7 +37,7 @@ export default function HeroPage() {
     <section className="relative h-screen w-full overflow-hidden bg-vione-bg">
       {/* Poster shows instantly — swap in your real compressed poster jpg */}
       <img
-        src="/images/heroposter.png"
+        src="/images/hero-poster.jpg"
         alt=""
         aria-hidden="true"
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${

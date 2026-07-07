@@ -37,7 +37,7 @@ export default function HallOnePage() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-vione-bg">
       <img
-        src="/images/hallposter.png"
+        src="/images/hall-one-poster.jpg"
         alt=""
         aria-hidden="true"
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
@@ -82,7 +82,7 @@ export default function HallOnePage() {
               mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            Luxury Redefined
+            Pure Elegance
           </p>
 
           <h2
@@ -90,24 +90,12 @@ export default function HallOnePage() {
               mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            Every Detail
-            <br />
-            Tells A Story.
+            Timeless Grandeur
           </h2>
-
-          <p
-            className={`mx-auto mt-8 max-w-2xl text-base leading-8 text-vione-cream/90 transition-all duration-1000 delay-300 ease-out motion-reduce:transition-none md:text-lg ${
-              mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            }`}
-          >
-            Step into a world where luxury, elegance and unforgettable
-            experiences come together. Crafted for those who appreciate
-            timeless design and extraordinary moments.
-          </p>
           <br />
 
           <div
-            className={`mt-14 transition-all duration-1000 delay-500 ease-out motion-reduce:transition-none ${
+            className={`mt-14 transition-all duration-1000 delay-300 ease-out motion-reduce:transition-none ${
               mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >

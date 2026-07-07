@@ -131,7 +131,9 @@ export default function ExploreFurther() {
     >
       {/* Heading — perfectly centered */}
       <div className="mb-14 flex w-full max-w-3xl flex-col items-center text-center">
-        <br /><br />
+        <br /><br />  <br /><br />  <br />
+        
+        
         <h2
           className={`font-heading text-2xl font-medium uppercase tracking-[0.3em] text-vione-goldLight transition-all duration-1000 ease-out md:text-3xl ${
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
@@ -168,6 +170,7 @@ export default function ExploreFurther() {
           />
         ))}
       </div>
+      <br />
 
       {activeIndex !== null && (
         <ReelModal

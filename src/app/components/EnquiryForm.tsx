@@ -1,23 +1,10 @@
 "use client";
 
-/**
- * EnquiryForm — Vione
- * ------------------------------------------------------------
- * Premium dark-green + antique-gold identity, self-contained CSS
- * (no Tailwind dependency), inline SVG icons.
- *
- * On submit, builds a prefilled WhatsApp message from the enquiry
- * details and opens wa.me with it — no backend endpoint required.
- *
- * Fonts: uses the site's existing --font-heading / --font-body
- * CSS variables (set in layout.tsx via next/font). Falls back to
- * system serif/sans if those variables aren't present.
- */
+
 
 import { useMemo, useState, type FormEvent } from "react";
 
-// Replace with your actual WhatsApp business number: country code + number, no + or spaces.
-const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+const WHATSAPP_NUMBER = "+919971716056";
 
 function IconDiamond({ size = 10 }: { size?: number }) {
   return (

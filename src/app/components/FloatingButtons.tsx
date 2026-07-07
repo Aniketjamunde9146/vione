@@ -1,27 +1,10 @@
 "use client";
 
-/**
- * FloatingButtons — Vione
- * ------------------------------------------------------------
- * Currently: a single WhatsApp click-to-chat button, fixed to the
- * bottom-right corner on every page. Self-contained like Navbar and
- * Footer: plain scoped CSS, inline SVG — no Tailwind dependency.
- *
- * Usage:
- *   import FloatingButtons from "@/components/FloatingButtons";
- *   ...
- *   <FloatingButtons />
- *   (mount once, e.g. in your root layout next to Footer)
- *
- * TODO before shipping:
- *   - Replace WHATSAPP_NUMBER with your real number, country code
- *     first, digits only — no "+", spaces, or dashes (e.g. "919876543210").
- *   - Adjust DEFAULT_MESSAGE to whatever you want pre-filled in the chat.
- */
+
 
 import { useEffect, useState } from "react";
 
-const WHATSAPP_NUMBER = "910000000000"; // TODO: replace with the real number
+const WHATSAPP_NUMBER = "+919971716056"; 
 const DEFAULT_MESSAGE =
   "Hi Vione! I'd like to know more about your venue and available dates.";
 

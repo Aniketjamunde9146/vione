@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const REELS = [
-  { id: 1, src: "/videos/reel1.mp4", label: "THE VIONE" },
-  { id: 2, src: "/videos/reel2.mp4", label: "THE VIONE" },
-  { id: 3, src: "/videos/reel3.mp4", label: "THE VIONE" },
-  { id: 4, src: "/videos/reel4.mp4", label: "THE VIONE" },
+  { id: 1, src: "/videos/reel1", label: "THE VIONE" },
+  { id: 2, src: "/videos/reel2", label: "THE VIONE" },
+  { id: 3, src: "/videos/reel3", label: "THE VIONE" },
+  { id: 4, src: "/videos/reel4", label: "THE VIONE" },
 ];
 
 function ReelCard({
@@ -43,7 +43,6 @@ function ReelCard({
   }, []);
 
   return (
-    
     <button
       onClick={onOpen}
       style={{ transitionDelay: show ? `${index * 120}ms` : "0ms" }}
@@ -62,23 +61,19 @@ function ReelCard({
           canPlay ? "opacity-100" : "opacity-0"
         }`}
       >
-        <source src={reel.src} type="video/mp4" />
+        <source src={`${reel.src}.webm`} type="video/webm" />
+        <source src={`${reel.src}.mp4`} type="video/mp4" />
       </video>
 
-      {/* Green-tinted gradient for legibility, matches the rest of the site */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-vione-bg/60 via-transparent to-vione-bg/70 transition-opacity duration-500 group-hover:from-vione-bg/35 group-hover:to-vione-bg/80" />
-
-      {/* Gold border ring on hover */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-vione-gold/0 transition-all duration-500 group-hover:ring-vione-gold/30" />
 
-      {/* Top-left label */}
       <div className="absolute left-3 top-3 z-10">
         <span className="font-heading text-[10px] font-medium uppercase tracking-[0.2em] text-vione-cream/90">
           {reel.label}
         </span>
       </div>
 
-      {/* Top-right badge */}
       <div className="absolute right-3 top-3 z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-vione-goldLight to-vione-gold shadow-md transition-transform duration-500 group-hover:scale-110">
         <span className="font-heading text-[9px] font-semibold uppercase tracking-tighter text-vione-bg">
           VIONE
@@ -129,11 +124,9 @@ export default function ExploreFurther() {
       ref={sectionRef}
       className="relative flex w-full flex-col items-center bg-vione-bg px-6 py-24 sm:px-10 lg:px-16"
     >
-      {/* Heading — perfectly centered */}
       <div className="mb-14 flex w-full max-w-3xl flex-col items-center text-center">
-        <br /><br />  <br /><br />  <br />
-        
-        
+        <br /><br /> <br /><br /> <br />
+
         <h2
           className={`font-heading text-2xl font-medium uppercase tracking-[0.3em] text-vione-goldLight transition-all duration-1000 ease-out md:text-3xl ${
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
@@ -158,7 +151,6 @@ export default function ExploreFurther() {
       </div>
       <br />
 
-      {/* Cards — flex-wrap keeps them centered as a group on any width */}
       <div className="flex w-full max-w-6xl flex-wrap justify-center gap-4 sm:gap-5 md:gap-6">
         {REELS.map((reel, i) => (
           <ReelCard
@@ -215,14 +207,16 @@ function ReelModal({
         }`}
       >
         <video
-          src={reel.src}
           autoPlay
           muted
           loop
           playsInline
           controls
           className="h-full w-full object-cover"
-        />
+        >
+          <source src={`${reel.src}.webm`} type="video/webm" />
+          <source src={`${reel.src}.mp4`} type="video/mp4" />
+        </video>
 
         <button
           onClick={handleClose}

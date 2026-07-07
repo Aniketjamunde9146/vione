@@ -1,0 +1,23 @@
+{
+  "name": "Vione — Luxury Redefined",
+  "short_name": "Vione",
+  "description": "A premium event venue for weddings, celebrations, and corporate experiences.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0B0F0C",
+  "theme_color": "#0B0F0C",
+  "icons": [
+    {
+      "src": "/images/logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/images/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

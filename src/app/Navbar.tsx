@@ -53,7 +53,7 @@ export default function Navbar() {
           </button>
 
           <Link href="/" className="vione-nav-logo" onClick={() => setOpen(false)} aria-label="Vione — Home">
-            <img src="/images/logo.png" alt="Vione" />
+            <img src="/images/logo.webp" alt="Vione" />
           </Link>
 
           <Link href="/enquiry" className="vione-nav-cta">

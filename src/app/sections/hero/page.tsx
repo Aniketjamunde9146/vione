@@ -88,21 +88,23 @@ export default function HeroPage() {
         }`}
       />
 
-      {/* Video — no source in DOM until loadVideo flips true */}
       <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
-          videoReady ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {loadVideo && <source src="/videos/herobg.mp4" type="video/mp4" />}
-      </video>
-
+  ref={videoRef}
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="none"
+  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+    videoReady ? "opacity-100" : "opacity-0"
+  }`}
+>
+  {loadVideo && (
+    <>
+      <source src="/videos/herobg.webm" type="video/webm" />
+    </>
+  )}
+</video>
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-vione-bg/70 via-vione-green/40 to-vione-bg/80" />
 

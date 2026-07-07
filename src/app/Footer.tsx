@@ -92,7 +92,7 @@ export default function Footer() {
 
       <div className="vione-footer-top">
         <div className="vione-footer-brand">
-          <img src="/images/logo.png" alt="Vione" className="vione-footer-logo" />
+          <img src="/images/logo.webp" alt="Vione" className="vione-footer-logo" />
           <p className="vione-footer-tagline">Legacy, Curated.</p>
         </div>
 

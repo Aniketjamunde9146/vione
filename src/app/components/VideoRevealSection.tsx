@@ -5,10 +5,10 @@ import Image, { type StaticImageData } from "next/image";
 
 type VideoRevealSectionProps = {
   posterSrc: StaticImageData | string;
-  videoSrc: string;
+  videoSrc: string; // pass the base path WITHOUT extension, e.g. "/videos/hallbg"
   children: React.ReactNode;
   overlay?: React.ReactNode;
-  priority?: boolean; // true only for above-the-fold sections (e.g. hero)
+  priority?: boolean;
 };
 
 export default function VideoRevealSection({
@@ -36,13 +36,12 @@ export default function VideoRevealSection({
           if ("requestIdleCallback" in window) {
             idleId = (window as any).requestIdleCallback(start, { timeout: 1500 });
           } else {
-            // window may be typed differently in some TS configs; cast to any to access setTimeout
             idleId = (window as any).setTimeout(start, 300) as number;
           }
           observer.disconnect();
         }
       },
-      { rootMargin: "300px" } // start a little earlier since it's mid-page scroll
+      { rootMargin: "300px" }
     );
 
     observer.observe(section);
@@ -98,7 +97,12 @@ export default function VideoRevealSection({
           videoReady ? "opacity-100 scale-100" : "opacity-0 scale-105"
         }`}
       >
-        {loadVideo && <source src={videoSrc} type="video/mp4" />}
+        {loadVideo && (
+          <>
+            <source src={`${videoSrc}.webm`} type="video/webm" />
+            <source src={`${videoSrc}.mp4`} type="video/mp4" />
+          </>
+        )}
       </video>
 
       {overlay}

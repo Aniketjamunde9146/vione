@@ -1,22 +1,35 @@
 "use client";
 
-
-
 import { useEffect, useState } from "react";
 
-const WHATSAPP_NUMBER = "+919971716056"; 
+const WHATSAPP_NUMBER = "+919971716056";
+const CALL_NUMBER = "+919971716056";
 const DEFAULT_MESSAGE =
   "Hi Vione! I'd like to know more about your venue and available dates.";
 
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   DEFAULT_MESSAGE
 )}`;
+const CALL_URL = `tel:${CALL_NUMBER}`;
 
 function IconWhatsApp() {
   return (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
         d="M17.5 6.5a7.6 7.6 0 0 0-11.9 9.1L4.5 20l4.5-1.1a7.6 7.6 0 0 0 10.9-6.8c0-2-.8-3.9-2.4-5.6Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconCall() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M7.5 4.5c.5 1.2 1.1 2.4 1.9 3.5.3.4.2.9-.1 1.2L7.8 10.7c-.3.3-.3.7-.1 1a13 13 0 0 0 4.6 4.6c.3.2.7.2 1-.1l1.5-1.5c.3-.3.8-.4 1.2-.1 1.1.8 2.3 1.4 3.5 1.9.6.2 1 .8.9 1.4l-.4 2.1c-.1.6-.7 1-1.3 1C11.9 21.3 2.7 12.1 2 4.3c-.1-.6.3-1.2.9-1.3l2.1-.4c.6-.1 1.2.3 1.4.9Z"
         stroke="currentColor"
         strokeWidth="1.4"
         strokeLinejoin="round"
@@ -38,11 +51,20 @@ export default function FloatingButtons() {
       <style>{CSS}</style>
       <div className={`vione-float${visible ? " in-view" : ""}`}>
         <a
+          href={CALL_URL}
+          aria-label="Call Vione"
+          className="vione-float-btn vione-float-btn-whatsapp"
+        >
+          <span className="vione-float-tooltip">Call us</span>
+          <IconCall />
+        </a>
+
+        <a
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Vione on WhatsApp"
-          className="vione-float-btn"
+          className="vione-float-btn vione-float-btn-whatsapp"
         >
           <span className="vione-float-ring" aria-hidden="true" />
           <span className="vione-float-tooltip">Chat with us</span>
@@ -59,6 +81,10 @@ const CSS = `
   right: 1.5rem;
   bottom: 1.5rem;
   z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.9rem;
   opacity: 0;
   transform: translateY(14px) scale(0.9);
   transition: opacity 0.5s cubic-bezier(.16,.8,.24,1), transform 0.5s cubic-bezier(.16,.8,.24,1);
@@ -84,6 +110,8 @@ const CSS = `
   border-color: #C9A876;
   background: #123423;
 }
+
+.vione-float-btn-call { width: 50px; height: 50px; }
 
 .vione-float-ring {
   position: absolute;
@@ -130,6 +158,7 @@ const CSS = `
 @media (max-width: 640px) {
   .vione-float { right: 1rem; bottom: 1rem; }
   .vione-float-btn { width: 50px; height: 50px; }
+  .vione-float-btn-call { width: 44px; height: 44px; }
   .vione-float-tooltip { display: none; }
 }
 `;

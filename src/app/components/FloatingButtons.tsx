@@ -38,10 +38,6 @@ function IconWhatsApp() {
         strokeWidth="1.4"
         strokeLinejoin="round"
       />
-      <path
-        d="M9.2 9.1c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.3.2.4.6 1.4.7 1.5.1.1.1.3 0 .4-.1.2-.2.3-.3.4-.1.1-.3.3-.4.4-.1.1-.3.3-.1.6.2.3.8 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.7.8.2.1.4.2.4.3 0 .2 0 .9-.3 1.3-.3.5-1.4 1-2 1.1-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5Z"
-        fill="currentColor"
-      />
     </svg>
   );
 }
@@ -94,24 +90,23 @@ const CSS = `
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: #150F06;
-  border: 1px solid rgba(198,162,93,0.4);
-  color: #F4EFE6;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  background: #0B1F17;
+  border: 1px solid rgba(201,168,118,0.4);
+  color: #EDE7D9;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
   transition: transform 0.25s cubic-bezier(.16,.8,.24,1), border-color 0.25s ease, background 0.25s ease;
 }
 .vione-float-btn:hover {
   transform: translateY(-3px) scale(1.05);
-  border-color: #C6A25D;
-  background: #1C1310;
+  border-color: #C9A876;
+  background: #123423;
 }
 
-/* Soft ambient pulse, drawing the eye without being loud */
 .vione-float-ring {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  border: 1px solid rgba(198,162,93,0.55);
+  border: 1px solid rgba(201,168,118,0.55);
   animation: vione-float-pulse 2.6s ease-out infinite;
 }
 
@@ -120,18 +115,16 @@ const CSS = `
   100% { transform: scale(1.55); opacity: 0; }
 }
 
-/* Tooltip slides out to the left on hover, in the same voice as
-   Footer's hover-color language rather than a generic browser title. */
 .vione-float-tooltip {
   position: absolute;
   right: calc(100% + 0.75rem);
   top: 50%;
   transform: translateY(-50%) translateX(6px);
   white-space: nowrap;
-  background: #150F06;
-  border: 1px solid rgba(198,162,93,0.3);
-  color: #F4EFE6;
-  font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  background: #0B1F17;
+  border: 1px solid rgba(201,168,118,0.3);
+  color: #EDE7D9;
+  font-family: var(--font-body, 'Manrope'), ui-sans-serif, system-ui, sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   padding: 0.45rem 0.85rem;
@@ -154,8 +147,6 @@ const CSS = `
 @media (max-width: 640px) {
   .vione-float { right: 1rem; bottom: 1rem; }
   .vione-float-btn { width: 50px; height: 50px; }
-  /* Tooltip crowds the screen edge on small viewports — hide it there,
-     the icon alone is a well-understood affordance on mobile. */
   .vione-float-tooltip { display: none; }
 }
 `;

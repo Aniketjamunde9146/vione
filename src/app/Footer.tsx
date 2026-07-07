@@ -194,11 +194,11 @@ export default function Footer() {
 const CSS = `
 .vione-footer {
   position: relative;
-  background: #0D0C0A;
-  border-top: 1px solid rgba(198,162,93,0.15);
+  background: #0B1F17;
+  border-top: 1px solid rgba(201,168,118,0.15);
   padding: 4rem 2rem 2rem;
-  font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-  color: #9B9284;
+  font-family: var(--font-body, 'Manrope'), ui-sans-serif, system-ui, sans-serif;
+  color: #A9A296;
 }
 .vione-footer *, .vione-footer *::before, .vione-footer *::after { box-sizing: border-box; }
 
@@ -211,7 +211,6 @@ const CSS = `
   padding-bottom: 3rem;
 }
 
-/* Scroll reveal: each column rises + fades in, staggered left to right. */
 .vione-footer-top > * {
   opacity: 0;
   transform: translateY(22px);
@@ -242,10 +241,10 @@ const CSS = `
 .vione-footer-brand { display: flex; flex-direction: column; gap: 0.9rem; }
 .vione-footer-logo { height: 56px; width: 60px; }
 .vione-footer-tagline {
-  font-family: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  font-family: var(--font-heading, 'Cinzel'), ui-serif, Georgia, serif;
   font-style: italic;
   font-size: 1.05rem;
-  color: #F4EFE6;
+  color: #EDE7D9;
   max-width: 220px;
   line-height: 1.4;
   margin: 0;
@@ -253,47 +252,48 @@ const CSS = `
 
 .vione-footer-heading {
   display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-heading, 'Cinzel'), serif;
   font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em;
-  color: #C6A25D; margin: 0 0 1.1rem;
+  color: #C9A876; margin: 0 0 1.1rem;
 }
-.vione-footer-diamond { color: #C6A25D; flex-shrink: 0; }
+.vione-footer-diamond { color: #C9A876; flex-shrink: 0; }
 
 .vione-footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
 .vione-footer-links a {
-  color: #9B9284; text-decoration: none; font-size: 14px;
+  color: #A9A296; text-decoration: none; font-size: 14px;
   transition: color 0.15s ease;
 }
-.vione-footer-links a:hover { color: #F4EFE6; }
+.vione-footer-links a:hover { color: #EDE7D9; }
 
 .vione-footer-text { font-size: 14px; line-height: 1.7; margin: 0 0 0.5rem; }
-.vione-footer-text a { color: #9B9284; text-decoration: none; transition: color 0.15s ease; }
-.vione-footer-text a:hover { color: #F4EFE6; }
+.vione-footer-text a { color: #A9A296; text-decoration: none; transition: color 0.15s ease; }
+.vione-footer-text a:hover { color: #EDE7D9; }
 
 .vione-footer-directions {
   display: inline-flex; align-items: center; gap: 0.4rem;
   margin-top: 0.4rem;
   font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500;
-  color: #C6A25D; text-decoration: none;
-  border-bottom: 1px solid rgba(198,162,93,0.35);
+  color: #C9A876; text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,118,0.35);
   padding-bottom: 2px;
   transition: color 0.15s ease, border-color 0.15s ease, gap 0.15s ease;
 }
-.vione-footer-directions:hover { color: #F4EFE6; border-color: rgba(244,239,230,0.5); gap: 0.6rem; }
+.vione-footer-directions:hover { color: #EDE7D9; border-color: rgba(237,231,217,0.5); gap: 0.6rem; }
 
 .vione-footer-social-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; }
 .vione-footer-social {
   display: inline-flex; align-items: center; justify-content: center;
   width: 34px; height: 34px;
-  border: 1px solid rgba(198,162,93,0.3); border-radius: 999px;
-  color: #C6A25D; transition: border-color 0.15s ease, color 0.15s ease;
+  border: 1px solid rgba(201,168,118,0.3); border-radius: 999px;
+  color: #C9A876; transition: border-color 0.15s ease, color 0.15s ease;
 }
-.vione-footer-social:hover { border-color: #C6A25D; color: #F4EFE6; }
+.vione-footer-social:hover { border-color: #C9A876; color: #EDE7D9; }
 
 .vione-footer-bottom { max-width: 1100px; margin: 0 auto; }
-.vione-footer-rule { display: block; height: 1px; width: 100%; background: rgba(198,162,93,0.15); }
+.vione-footer-rule { display: block; height: 1px; width: 100%; background: rgba(201,168,118,0.15); }
 .vione-footer-bottom-row {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
-  gap: 0.5rem; padding-top: 1.5rem; font-size: 12px; color: #645C50;
+  gap: 0.5rem; padding-top: 1.5rem; font-size: 12px; color: #5C6A61;
 }
 .vione-footer-bottom-row p { margin: 0; }
 `;

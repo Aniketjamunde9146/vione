@@ -5,13 +5,10 @@ import DiscoverButton from "@/app/components/DiscoverButton";
 
 export default function HeroPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
-
   const [canPlay, setCanPlay] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Content (headline, button, scroll indicator) should appear on its own
-  // timer — it must never depend on whether the video has loaded.
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 100);
     return () => clearTimeout(t);
@@ -29,19 +26,25 @@ export default function HeroPage() {
           observer.disconnect();
         }
       },
-      {
-        rootMargin: "200px",
-      }
+      { rootMargin: "200px" }
     );
 
     observer.observe(video);
-
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Background Video */}
+    <section className="relative h-screen w-full overflow-hidden bg-vione-bg">
+      {/* Poster shows instantly — swap in your real compressed poster jpg */}
+      <img
+        src="/images/heroposter.png"
+        alt=""
+        aria-hidden="true"
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          videoLoaded ? "opacity-0" : "opacity-100"
+        }`}
+      />
+
       <video
         ref={videoRef}
         autoPlay
@@ -49,6 +52,7 @@ export default function HeroPage() {
         loop
         playsInline
         preload="none"
+        poster="/images/hero-poster.jpg"
         onCanPlayThrough={() => setVideoLoaded(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1500ms] ${
           canPlay && videoLoaded ? "opacity-100" : "opacity-0"
@@ -57,13 +61,12 @@ export default function HeroPage() {
         <source src="/videos/herobg.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Green-tinted overlay instead of flat black */}
+      <div className="absolute inset-0 bg-gradient-to-b from-vione-bg/70 via-vione-green/40 to-vione-bg/80" />
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
         <h1
-          className={`text-6xl font-light uppercase tracking-[0.25em] transition-all duration-1000 ease-out md:text-8xl ${
+          className={`font-heading text-6xl font-medium uppercase tracking-[0.25em] text-vione-goldLight transition-all duration-1000 ease-out md:text-8xl ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
@@ -79,13 +82,12 @@ export default function HeroPage() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <div
         className={`absolute bottom-8 left-1/2 z-10 -translate-x-1/2 transition-opacity duration-1000 delay-700 ${
           mounted ? "opacity-70" : "opacity-0"
         }`}
       >
-        <div className="h-10 w-px bg-white/70 animate-scroll-line" />
+        <div className="h-10 w-px bg-vione-gold/70 animate-scroll-line" />
       </div>
     </section>
   );

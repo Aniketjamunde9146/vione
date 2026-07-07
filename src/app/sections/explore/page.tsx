@@ -43,10 +43,11 @@ function ReelCard({
   }, []);
 
   return (
+    
     <button
       onClick={onOpen}
       style={{ transitionDelay: show ? `${index * 120}ms` : "0ms" }}
-      className={`group relative aspect-[3/5] w-[calc(50%-0.5rem)] shrink-0 overflow-hidden rounded-2xl bg-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.55)] sm:w-[calc(25%-1.125rem)] ${
+      className={`group relative aspect-[3/5] w-[calc(50%-0.5rem)] shrink-0 overflow-hidden rounded-2xl bg-vione-deep shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] sm:w-[calc(25%-1.125rem)] ${
         show ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
@@ -64,22 +65,22 @@ function ReelCard({
         <source src={reel.src} type="video/mp4" />
       </video>
 
-      {/* Gradient for legibility */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 transition-opacity duration-500 group-hover:from-black/30 group-hover:to-black/70" />
+      {/* Green-tinted gradient for legibility, matches the rest of the site */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-vione-bg/60 via-transparent to-vione-bg/70 transition-opacity duration-500 group-hover:from-vione-bg/35 group-hover:to-vione-bg/80" />
 
-      {/* Subtle border ring on hover */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/0 transition-all duration-500 group-hover:ring-white/20" />
+      {/* Gold border ring on hover */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-vione-gold/0 transition-all duration-500 group-hover:ring-vione-gold/30" />
 
       {/* Top-left label */}
       <div className="absolute left-3 top-3 z-10">
-        <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/90">
+        <span className="font-heading text-[10px] font-medium uppercase tracking-[0.2em] text-vione-cream/90">
           {reel.label}
         </span>
       </div>
 
       {/* Top-right badge */}
-      <div className="absolute right-3 top-3 z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/90 shadow-md transition-transform duration-500 group-hover:scale-110">
-        <span className="text-[9px] font-semibold uppercase tracking-tighter text-black">
+      <div className="absolute right-3 top-3 z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-vione-goldLight to-vione-gold shadow-md transition-transform duration-500 group-hover:scale-110">
+        <span className="font-heading text-[9px] font-semibold uppercase tracking-tighter text-vione-bg">
           VIONE
         </span>
       </div>
@@ -126,12 +127,13 @@ export default function ExploreFurther() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full flex-col items-center bg-black px-6 py-24 sm:px-10 lg:px-16"
+      className="relative flex w-full flex-col items-center bg-vione-bg px-6 py-24 sm:px-10 lg:px-16"
     >
       {/* Heading — perfectly centered */}
       <div className="mb-14 flex w-full max-w-3xl flex-col items-center text-center">
+        <br /><br />
         <h2
-          className={`text-2xl font-light uppercase tracking-[0.3em] text-white transition-all duration-1000 ease-out md:text-3xl ${
+          className={`font-heading text-2xl font-medium uppercase tracking-[0.3em] text-vione-goldLight transition-all duration-1000 ease-out md:text-3xl ${
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
@@ -139,19 +141,19 @@ export default function ExploreFurther() {
         </h2>
         <br />
         <p
-          className={`mt-4 text-[11px] uppercase tracking-[0.4em] text-white/50 transition-all duration-1000 delay-150 ease-out ${
+          className={`mt-4 font-heading text-[11px] uppercase tracking-[0.4em] text-vione-gold/60 transition-all duration-1000 delay-150 ease-out ${
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
           Follow The Journey
         </p>
+        <br />
         <div
-          className={`mt-6 h-px w-16 bg-white/20 transition-all duration-1000 delay-300 ease-out ${
+          className={`mt-6 h-px w-16 bg-vione-gold/30 transition-all duration-1000 delay-300 ease-out ${
             inView ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
           }`}
         />
       </div>
-    
       <br />
 
       {/* Cards — flex-wrap keeps them centered as a group on any width */}
@@ -199,33 +201,35 @@ function ReelModal({
   return (
     <div
       onClick={handleClose}
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-500 ease-out ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-vione-bg/95 backdrop-blur-sm transition-opacity duration-500 ease-out ${
         mounted ? "opacity-100" : "opacity-0"
       }`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`relative aspect-[9/16] h-[85vh] max-h-[850px] overflow-hidden rounded-2xl bg-black shadow-[0_20px_80px_rgba(0,0,0,0.6)] transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${
+        className={`relative aspect-[9/16] h-[85vh] max-h-[850px] overflow-hidden rounded-2xl border border-vione-gold/15 bg-vione-deep shadow-[0_20px_80px_rgba(0,0,0,0.65)] transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${
           mounted ? "scale-100 opacity-100" : "scale-90 opacity-0"
         }`}
       >
         <video
           src={reel.src}
           autoPlay
+          muted
           loop
           playsInline
+          controls
           className="h-full w-full object-cover"
         />
 
         <button
           onClick={handleClose}
           aria-label="Close"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-vione-gold/20 bg-vione-bg/60 text-vione-cream backdrop-blur-md transition hover:border-vione-gold/50 hover:bg-vione-bg/80"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path
               d="M6 6L18 18M18 6L6 18"
-              stroke="white"
+              stroke="#EDE7D9"
               strokeWidth="2"
               strokeLinecap="round"
             />

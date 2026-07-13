@@ -5,6 +5,7 @@ import Footer from "@/app/Footer";
 import ScrollProgress from "@/app/components/ScrollProgress";
 import "./globals.css";
 import FloatingButtons from "./components/FloatingButtons";
+import ChromeGate from "./ChromeGate";
 
 const cinzel = Cinzel({
   variable: "--font-heading",
@@ -111,12 +112,8 @@ export default function RootLayout({
       className={`${cinzel.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-vione-bg text-vione-cream font-body">
-        <ScrollProgress />
-        <Navbar />
-        {children}
-        <Footer />
-        <FloatingButtons />
-      </body>
+  <ChromeGate>{children}</ChromeGate>
+</body>
     </html>
   );
 }

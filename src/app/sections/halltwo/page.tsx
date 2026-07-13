@@ -16,7 +16,7 @@ export default function HallOnePage() {
   return (
     <VideoRevealSection
       posterSrc={hallTwoPoster}
-      videoSrc="/videos/hallbg"
+      videoSrc="/videos/hall2bg"
       overlay={
         <>
           <div className="absolute inset-0 bg-vione-bg/55" />

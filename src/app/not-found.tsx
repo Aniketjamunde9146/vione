@@ -27,14 +27,10 @@ export default function NotFound() {
         }}
       />
 
-      {/* faint rings, echoing the same motif used behind Footer/Navbar accents */}
-      <div aria-hidden="true" className="vione-404-ring vione-404-ring--outer" />
-      <div aria-hidden="true" className="vione-404-ring vione-404-ring--inner" />
+    
 
       <div className={`vione-404-content${loaded ? " in-view" : ""}`}>
-        {/* signature mark: the diamond motif from Footer's column headings,
-            with a thin gold rule drawing outward — a small curtain-reveal
-            gesture, in keeping with an events venue rather than a generic icon */}
+   
         <div className="vione-404-mark" aria-hidden="true">
           <span className="vione-404-line" />
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="vione-404-diamond">
@@ -43,9 +39,7 @@ export default function NotFound() {
           <span className="vione-404-line" />
         </div>
 
-        <span aria-hidden="true" className="vione-404-eyebrow">
-          &mdash; 404 &mdash;
-        </span>
+       
 
         <h1 className="vione-404-heading">
           This Moment
@@ -53,11 +47,11 @@ export default function NotFound() {
           Doesn&rsquo;t Exist
         </h1>
 
-        <p className="vione-404-body">
+        {/* <p className="vione-404-body">
           The page you&rsquo;re looking for slipped away before the story
           reached it. Let&rsquo;s bring you back to where the celebration
           begins.
-        </p>
+        </p> */}
 
         <div className="vione-404-actions">
           <Link
@@ -70,14 +64,14 @@ export default function NotFound() {
             <span className="vione-404-arrow">→</span>
           </Link>
 
-          <Link
-            href="/sections/explore"
+          {/* <Link
+            href="/"
             onMouseEnter={() => setHoverSecondary(true)}
             onMouseLeave={() => setHoverSecondary(false)}
             className={`vione-404-btn vione-404-btn--secondary${hoverSecondary ? " hover" : ""}`}
           >
             Explore Vione
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>

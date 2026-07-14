@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import DiscoverButton from "@/app/components/DiscoverButton";
 import VideoRevealSection from "@/app/components/VideoRevealSection";
-import hallTwoPoster from "@public/images/hall-two-poster.webp";
+import hallPoster from "@public/images/hallposter.webp";
 
 export default function HallOnePage() {
   const [mounted, setMounted] = useState(false);
@@ -15,8 +15,8 @@ export default function HallOnePage() {
 
   return (
     <VideoRevealSection
-      posterSrc={hallTwoPoster}
-      videoSrc="/videos/hall2bg"
+      posterSrc={hallPoster}
+      videoSrc="/videos/hallbg"
       overlay={
         <>
           <div className="absolute inset-0 bg-vione-bg/55" />

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { isSlowConnection } from "@/lib/network";
+import { videoLoadQueue } from "@/lib/videoLoadQueue";
 
 const REELS = [
   { id: 1, src: "/videos/reel1", label: "THE VIONE" },
@@ -22,25 +24,49 @@ function ReelCard({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [canPlay, setCanPlay] = useState(false);
+  const [skipVideo] = useState(() => isSlowConnection());
 
   useEffect(() => {
+    if (skipVideo) return;
+
     const video = videoRef.current;
     if (!video) return;
+
+    let queued = false;
+
+    const markReady = () => {
+      if (video.readyState >= 3) {
+        setCanPlay(true);
+        if (queued) {
+          videoLoadQueue.done(); // release the slot so the next reel can load
+          queued = false;
+        }
+      }
+    };
+    video.addEventListener("canplaythrough", markReady);
+    video.addEventListener("loadeddata", markReady);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.load();
-          setCanPlay(true);
-          observer.disconnect();
+          queued = true;
+          videoLoadQueue.enqueue(() => {
+            video.load();
+          });
+        } else if (canPlay) {
+          video.pause();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "150px", threshold: 0.25 }
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("canplaythrough", markReady);
+      video.removeEventListener("loadeddata", markReady);
+    };
+  }, [skipVideo, canPlay]);
 
   return (
     <button
@@ -50,20 +76,22 @@ function ReelCard({
         show ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
-      <video
-        ref={videoRef}
-        muted
-        loop
-        playsInline
-        autoPlay={canPlay}
-        preload="none"
-        className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${
-          canPlay ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <source src={`${reel.src}.webm`} type="video/webm" />
-        <source src={`${reel.src}.mp4`} type="video/mp4" />
-      </video>
+      {!skipVideo && (
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          autoPlay={canPlay}
+          preload="none"
+          className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${
+            canPlay ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <source src={`${reel.src}.webm`} type="video/webm" />
+          <source src={`${reel.src}.mp4`} type="video/mp4" />
+        </video>
+      )}
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-vione-bg/60 via-transparent to-vione-bg/70 transition-opacity duration-500 group-hover:from-vione-bg/35 group-hover:to-vione-bg/80" />
       <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-vione-gold/0 transition-all duration-500 group-hover:ring-vione-gold/30" />

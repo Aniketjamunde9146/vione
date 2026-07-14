@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
+import { useVideoReveal } from "@/app/hooks/useVideoReveal";
 
 type VideoRevealSectionProps = {
   posterSrc: StaticImageData | string;
-  videoSrc: string; // pass the base path WITHOUT extension, e.g. "/videos/hallbg"
+  videoSrc: string; // base path WITHOUT extension, e.g. "/videos/hallbg"
   children: React.ReactNode;
   overlay?: React.ReactNode;
   priority?: boolean;
@@ -18,59 +18,12 @@ export default function VideoRevealSection({
   overlay,
   priority = false,
 }: VideoRevealSectionProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const [loadVideo, setLoadVideo] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let idleId: number;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const start = () => setLoadVideo(true);
-          if ("requestIdleCallback" in window) {
-            idleId = (window as any).requestIdleCallback(start, { timeout: 1500 });
-          } else {
-            idleId = (window as any).setTimeout(start, 300) as number;
-          }
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px" }
-    );
-
-    observer.observe(section);
-    return () => {
-      observer.disconnect();
-      if ("cancelIdleCallback" in window) (window as any).cancelIdleCallback(idleId);
-      else clearTimeout(idleId);
-    };
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !loadVideo) return;
-    video.load();
-
-    const markReady = () => {
-      if (video.readyState >= 3) setVideoReady(true);
-    };
-    video.addEventListener("canplaythrough", markReady);
-    video.addEventListener("loadeddata", markReady);
-    return () => {
-      video.removeEventListener("canplaythrough", markReady);
-      video.removeEventListener("loadeddata", markReady);
-    };
-  }, [loadVideo]);
+  const { sectionRef, videoRef, loadVideo, videoReady, skipVideo } =
+    useVideoReveal("150px");
 
   return (
     <section
-      ref={sectionRef}
+      ref={sectionRef as React.RefObject<HTMLElement>}
       className="relative min-h-screen overflow-hidden bg-vione-bg"
     >
       <Image
@@ -85,25 +38,29 @@ export default function VideoRevealSection({
         }`}
       />
 
-      <video
-        ref={videoRef}
-        aria-hidden="true"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out ${
-          videoReady ? "opacity-100 scale-100" : "opacity-0 scale-105"
-        }`}
-      >
-        {loadVideo && (
-          <>
-            <source src={`${videoSrc}.webm`} type="video/webm" />
-            <source src={`${videoSrc}.mp4`} type="video/mp4" />
-          </>
-        )}
-      </video>
+      {!skipVideo && (
+        <video
+          ref={videoRef}
+          aria-hidden="true"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          disablePictureInPicture
+          disableRemotePlayback
+          className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out ${
+            videoReady ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
+        >
+          {loadVideo && (
+            <>
+              <source src={`${videoSrc}.webm`} type="video/webm" />
+              <source src={`${videoSrc}.mp4`} type="video/mp4" />
+            </>
+          )}
+        </video>
+      )}
 
       {overlay}
 

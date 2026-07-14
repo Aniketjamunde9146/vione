@@ -4,6 +4,7 @@ const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  compress: true,
   allowedDevOrigins: ["192.168.1.9"],
   images: {
     remotePatterns: [
@@ -14,28 +15,23 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-//   async headers() {
-//     return [
-//       {
-//         source: "/(.*)",
-//         headers: [
-//           { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
-//           { key: "X-Frame-Options", value: "DENY" },
-//           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-//           {
-//             key: "Content-Security-Policy",
-//             value: [
-//               "default-src 'self'",
-//               "img-src 'self' data: blob:",
-//               `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
-//               "style-src 'self' 'unsafe-inline'",
-//               "require-trusted-types-for 'script'",
-//             ].join("; "),
-//           },
-//         ],
-//       },
-//     ];
-//   },
+  async headers() {
+    return [
+      {
+        source: "/videos/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+     
+    ];
+  },
 };
 
 export default nextConfig;

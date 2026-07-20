@@ -22,8 +22,6 @@
   --shadow-badge: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* Tailwind's preflight already resets margin/padding on most elements,
-   this just covers any stragglers (e.g. fieldset, legend) consistently. */
 * {
   margin: 0;
   padding: 0;
@@ -40,13 +38,11 @@ body {
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }
 
-/* Keep focus visible for keyboard users without adding a ring to mouse clicks */
 :focus-visible {
   outline: 2px solid #c9a65c;
   outline-offset: 2px;
 }
 
-/* Themed scrollbar — gold thumb on dark green track, WebKit + Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #C9A876 #0B1F17;
@@ -86,4 +82,27 @@ body {
 
 .animate-scroll-line {
   animation: scrollLine 2s ease-in-out infinite;
+}
+
+/* Slow zoom/pan for background images (Experience + Glimpse sections) */
+@keyframes slow-pan {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+}
+
+.animate-slow-pan {
+  animation-name: slow-pan;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-pan {
+    animation: none;
+  }
 }

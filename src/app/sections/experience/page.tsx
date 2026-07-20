@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import DiscoverButton from "@/app/components/DiscoverButton";
 import VideoRevealSection from "@/app/components/VideoRevealSection";
-import hallPoster from "@public/images/hallposter.webp";
+import experiencePoster from "@public/images/experienceposter.webp";
 
-export default function HallTwoPage() {
+export default function ExperienceTwoPage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -15,8 +15,8 @@ export default function HallTwoPage() {
 
   return (
     <VideoRevealSection
-      posterSrc={hallPoster}
-      videoSrc="/videos/hallbg"
+      posterSrc={experiencePoster}
+      videoSrc="/videos/experiencebg"
       overlay={
         <>
           <div className="absolute inset-0 bg-vione-bg/60" />
@@ -43,7 +43,7 @@ export default function HallTwoPage() {
             }`}
             style={{ transitionDelay: "150ms" }}
           >
-            Moments Eternal
+            The Experience
           </h2>
 
           <div

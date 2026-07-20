@@ -1,26 +1,88 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import DiscoverButton from "@/app/components/DiscoverButton";
-import heroPoster from "@public/images/hero-poster.webp";
-import { useVideoReveal } from "@/app/hooks/useVideoReveal";
+import heroPoster from "@public/images/heroposter.webp";
 
 export default function HeroPage() {
   const [mounted, setMounted] = useState(false);
-  const { sectionRef, videoRef, loadVideo, videoReady, skipVideo } =
-    useVideoReveal("200px");
+  const [loadVideo, setLoadVideo] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+  const [skipVideo, setSkipVideo] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  // Skip video for reduced-motion or data-saver users
+  useEffect(() => {
+    const connection = (navigator as any)?.connection;
+    const saveData = connection?.saveData;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (saveData || prefersReducedMotion) {
+      setSkipVideo(true);
+    }
+  }, []);
+
+  // Start loading the video once the section nears the viewport
+  useEffect(() => {
+    if (skipVideo || !sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setLoadVideo(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [skipVideo]);
+
+  // Force the browser to pick up the newly-added <source> tags,
+  // then try to play; fall back to the poster on failure/error
+  useEffect(() => {
+    if (!loadVideo || !videoRef.current) return;
+    const video = videoRef.current;
+
+    const handleCanPlay = () => {
+      setVideoReady(true);
+      video.play().catch(() => {
+        setVideoReady(false);
+      });
+    };
+
+    const handleError = () => {
+      setSkipVideo(true);
+    };
+
+    video.addEventListener("canplaythrough", handleCanPlay);
+    video.addEventListener("error", handleError);
+
+    video.load();
+
+    return () => {
+      video.removeEventListener("canplaythrough", handleCanPlay);
+      video.removeEventListener("error", handleError);
+    };
+  }, [loadVideo]);
+
   const letters = "VIONE".split("");
 
   return (
     <section
-      ref={sectionRef as React.RefObject<HTMLElement>}
+      ref={sectionRef}
       className="relative h-screen w-full overflow-hidden bg-vione-bg"
     >
       <Image

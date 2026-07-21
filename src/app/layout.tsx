@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Manrope } from "next/font/google";
-import Navbar from "@/app/Navbar";
-import Footer from "@/app/Footer";
-import ScrollProgress from "@/app/components/ScrollProgress";
 import "./globals.css";
-import FloatingButtons from "./components/FloatingButtons";
 import ChromeGate from "./ChromeGate";
 
 const cinzel = Cinzel({
@@ -21,11 +17,11 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const siteUrl = "https://www.vione.com"; // TODO: replace with your real production domain
+const siteUrl = "https://www.vione.cc";
 const siteName = "Vione";
-const title = "Vione — Luxury Redefined";
+const title = "Luxury Banquet Hall & Event Venue in Delhi | Vione";
 const description =
-  "A premium event venue for weddings, celebrations, and corporate experiences.";
+  "Experience luxury events at Vione, Delhi's premium banquet and event venue. Perfect for weddings, corporate events, receptions, conferences, and private celebrations. Book your event today.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,10 +31,12 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
-    "luxury event venue",
-    "wedding venue",
-    "corporate events",
-    "premium celebrations",
+    "luxury banquet hall Delhi",
+    "wedding venue Delhi",
+    "corporate event space Delhi",
+    "birthday party venue Delhi",
+    "engagement reception venue",
+    "conference venue Delhi",
     "Vione",
   ],
   applicationName: siteName,
@@ -75,7 +73,7 @@ export const metadata: Metadata = {
         url: "/images/logo.webp",
         width: 1200,
         height: 630,
-        alt: "Vione — Luxury Redefined",
+        alt: "Vione — Luxury Banquet Hall & Event Venue in Delhi",
       },
     ],
   },
@@ -85,7 +83,6 @@ export const metadata: Metadata = {
     title,
     description,
     images: ["/images/logo.webp"],
-    // site: "@vione", // TODO: add if you have a Twitter/X handle
   },
 
   icons: {
@@ -94,7 +91,7 @@ export const metadata: Metadata = {
     apple: "/images/logo.webp",
   },
 
-  manifest: "/site.webmanifest", // optional — only if you add one
+  manifest: "/site.webmanifest",
 
   formatDetection: {
     telephone: false,
@@ -112,8 +109,8 @@ export default function RootLayout({
       className={`${cinzel.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-vione-bg text-vione-cream font-body">
-  <ChromeGate>{children}</ChromeGate>
-</body>
+        <ChromeGate>{children}</ChromeGate>
+      </body>
     </html>
   );
 }

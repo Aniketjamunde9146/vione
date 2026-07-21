@@ -4,7 +4,8 @@ import ExploreFurther from "./sections/explore/page";
 import HeroPage from "./sections/hero/page";
 import ExperienceTwoPage from "./sections/experience/page";
 import GlimpseTwoPage from "./sections/glimps/page";
-
+import SeoContent from "./components/SeoContent";
+import FAQSection from "./components/FAQSection";
 
 export default function Home() {
   return (
@@ -12,10 +13,12 @@ export default function Home() {
       <HeroPage />
       <ExperienceTwoPage />
       <GlimpseTwoPage />
+    
       <BlogSection />
       <ExploreFurther />
+      <SeoContent />
+      <FAQSection />
       <DirectEnquiry />
-      
     </main>
   );
 }

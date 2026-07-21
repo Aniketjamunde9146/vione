@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
@@ -10,6 +9,17 @@ const NAV_LINKS = [
   { label: "Glimps", href: "/sections/glimps" },
   { label: "Explore", href: "/sections/explore" },
   { label: "Enquiry", href: "/enquiry" },
+];
+
+// Internal-linking requirement from the SEO audit — Home, Wedding Venue,
+// Corporate Events, Banquet Hall, Gallery, Contact all cross-linked.
+// Adjust these hrefs if your actual route slugs differ.
+const SEO_LINKS = [
+  // { label: "Wedding Venue", href: "/wedding-venue" },
+  // { label: "Corporate Events", href: "/corporate-events" },
+  // { label: "Banquet Hall", href: "/banquet-hall" },
+  // { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const INSTAGRAM_URL =
@@ -112,6 +122,11 @@ export default function Footer() {
                 <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
+            {SEO_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -124,8 +139,8 @@ export default function Footer() {
             <br />
             New Delhi, Delhi, 110092
           </p>
+
           <a
-          
             href={DIRECTIONS_URL}
             target="_blank"
             rel="noopener noreferrer"

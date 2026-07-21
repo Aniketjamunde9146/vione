@@ -87,8 +87,7 @@ export default function HeroPage() {
     >
       <Image
         src={heroPoster}
-        alt=""
-        aria-hidden="true"
+        alt="Vione luxury event venue hero banner"
         fill
         priority
         fetchPriority="high"

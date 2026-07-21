@@ -7,6 +7,10 @@ import glimpsOne from "@public/images/glimpsone.jpg";
 import glimpsTwo from "@public/images/glimpstwo.jpg";
 
 const SLIDES = [glimpsOne, glimpsTwo];
+const SLIDE_ALT = [
+  "Vione hall two curated living decor",
+  "Vione hall two elegant event setup",
+];
 const SLIDE_DURATION = 6000; // ms each image stays before crossfading
 
 export default function GlimpseTwoPage() {
@@ -37,7 +41,7 @@ export default function GlimpseTwoPage() {
           >
             <Image
               src={slide}
-              alt={`The Glimpse ${index + 1}`}
+              alt={SLIDE_ALT[index]}
               fill
               priority={index === 0}
               sizes="100vw"

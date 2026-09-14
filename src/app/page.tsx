@@ -3,7 +3,7 @@ import BlogSection from "./blogs/page";
 import ExploreFurther from "./sections/explore/page";
 import HeroPage from "./sections/hero/page";
 import ExperienceTwoPage from "./sections/experience/page";
-import GlimpseTwoPage from "./sections/glimps/page";
+import GlimpseTwoPage from "./sections/glimpse/page";
 import SeoContent from "./components/SeoContent";
 import FAQSection from "./components/FAQSection";
 

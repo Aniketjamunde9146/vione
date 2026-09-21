@@ -158,7 +158,7 @@ export default function Footer() {
             <a href="mailto:socialmedia.vione@gmail.com">socialmedia.vione@gmail.com</a>
           </p>
           <p className="vione-footer-text">
-            <a href="tel:+919971716056">+91 9971716056</a>
+            <a href="tel:+919971767113">+91 9971767113</a>
           </p>
           <div className="vione-footer-social-row">
             <a

@@ -4,7 +4,7 @@
 
 import { useMemo, useState, type FormEvent } from "react";
 
-const WHATSAPP_NUMBER = "+919971716056";
+const WHATSAPP_NUMBER = "+919971767113";
 
 function IconDiamond({ size = 10 }: { size?: number }) {
   return (

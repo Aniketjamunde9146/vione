@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-const WHATSAPP_NUMBER = "+919971716056";
-const CALL_NUMBER = "+919971716056";
+const WHATSAPP_NUMBER = "+919971767113";
+const CALL_NUMBER = "+919971767113";
 const DEFAULT_MESSAGE =
   "Hi Vione! I'd like to know more about your venue and available dates.";
 

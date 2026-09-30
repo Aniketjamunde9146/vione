@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Manrope } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import ChromeGate from "./ChromeGate";
 
@@ -108,9 +109,41 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${manrope.variable} h-full antialiased`}
     >
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18401091751"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18401091751');
+
+            // Click-to-call conversion
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                'send_to': 'AW-18401091751/Fm9hCK6MtIsdEKfBqcZE',
+                'value': 1.0,
+                'currency': 'INR',
+                'event_callback': callback
+              });
+              return false;
+            }
+            window.gtag_report_conversion = gtag_report_conversion;
+          `}
+        </Script>
+      </head>
       <body className="min-h-full flex flex-col bg-vione-bg text-vione-cream font-body">
         <ChromeGate>{children}</ChromeGate>
       </body>
     </html>
   );
-}
+  }

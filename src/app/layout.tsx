@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Cinzel, Manrope } from "next/font/google";
 import Script from "next/script";
+import { Cinzel, Manrope } from "next/font/google";
 import "./globals.css";
 import ChromeGate from "./ChromeGate";
 
@@ -111,16 +111,15 @@ export default function RootLayout({
     >
       <head>
         {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18401091751"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads-tag" strategy="afterInteractive">
+        <Script id="google-ads-tag" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-18401091751');
+            gtag('config', 'AW-18401091751/nCQECLOFgI4dEKfBqcZE', {
+              phone_conversion_number: '+919971767113'
+            });
 
             // Click-to-call conversion
             function gtag_report_conversion(url) {
@@ -140,10 +139,14 @@ export default function RootLayout({
             window.gtag_report_conversion = gtag_report_conversion;
           `}
         </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18401091751"
+          strategy="beforeInteractive"
+        />
       </head>
       <body className="min-h-full flex flex-col bg-vione-bg text-vione-cream font-body">
         <ChromeGate>{children}</ChromeGate>
       </body>
     </html>
   );
-  }
+}
